@@ -16,7 +16,7 @@ plotdir = "/opt/projects/../RNA_seq/vst_PCA/"
 library(tidyverse)
 library(data.table)
 library(DESeq2)
-library(ggfortify)      # heatmap - option 1 - unsupervised 
+library(ggfortify)      # heatmap option 1 - unsupervised 
 library("RColorBrewer") # heatmap option 2 - hierarchical clustering   
 library(pheatmap)       # heatmap option 2 - hierarchical clustering   
 
