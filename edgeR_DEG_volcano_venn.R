@@ -9,10 +9,6 @@
 # RNA-seq results were aligned to GENCODE v19 and reads were counted using STAR
 # DEG cutoffs: absolute fold change > 1.5, p.value < 0.05
 
-# Reference: 
-# W. Ni, A. A. Perez, S. Schreiner, C. M. Nicolet, and P. J. Farnham. Characterization of the ZFX family of transcription factors 
-# that bind downstream of the start site of CpG island promoters. Nucleic Acids Res, 2020. doi: 10.1093/nar/gkaa384.
-
 #=====================================================================================
 # Directories 
 #=====================================================================================
