@@ -82,13 +82,13 @@ A ==> B ==> C ==> D
     * edgeR: Secondary method (especially when biological replicates are lacking in experiments).
 
 ## RNA-seq Computational Analysis
-- <code>01_nextflow_RNAseq</code> General command lines used to process raw reads using nf-core pipelines.
-- <code>02_gene_filtering</code> Additional gene-level filtering criteria (stringent).
-- <code>03_DESeq2</code> Downstream differential expression analysis (DEA) using DESeq2.
-- <code>04_edgeR</code> Downstream DEA using edgeR.
-- <code>05_enrichment</code> Enrichment analysis on significant differentially expressed genes (DEGs).
-- <code>06_visualization</code> Data visualization of RNA-seq analysis results: volcano plots, venn diagram, chow ruskey plot, heatmap, etc.
-- <code>07_cell_type_specific</code> Identification and exploration of cell-type specific signature genes.
+- <code>01_nextflow_RNAseq.sh</code> General command lines used to process raw reads using nf-core pipelines.
+- <code>02_gene_filtering.R</code> Additional gene-level filtering criteria (stringent).
+- <code>03_DESeq2.R</code> Downstream differential expression analysis (DEA) using DESeq2.
+- <code>04_edgeR.R</code> Downstream DEA using edgeR.
+- <code>05_enrichment.R</code> Enrichment analysis on significant differentially expressed genes (DEGs).
+- <code>06_visualization.RMD</code> Data visualization of RNA-seq analysis results: volcano plots, venn diagram, chow ruskey plot, heatmap, etc.
+- <code>07_cell_type_specific.R</code> Identification and exploration of cell-type specific signature genes.
 
 ## Tools 
 - R-4.3.2
