@@ -82,13 +82,19 @@ A ==> B ==> C ==> D
     * edgeR: Secondary method (especially when biological replicates are lacking in experiments).
 
 ## RNA-seq Computational Analysis
-- <code>01_nextflow_RNAseq.sh</code> General command lines used to process raw reads using nf-core pipelines.
-- <code>02_gene_filtering.R</code> Additional gene-level filtering criteria (stringent).
-- <code>03_DESeq2.R</code> Downstream differential expression analysis (DEA) using DESeq2.
-- <code>04_edgeR.R</code> Downstream DEA using edgeR.
-- <code>05_enrichment.R</code> Enrichment analysis on significant differentially expressed genes (DEGs).
-- <code>06_visualization.RMD</code> Data visualization of RNA-seq analysis results: volcano plots, venn diagram, chow ruskey plot, heatmap, etc.
-- <code>07_cell_type_specific.R</code> Identification and exploration of cell-type specific signature genes.
+- `01_nextflow_RNAseq.sh` General command lines used to process raw reads using nf-core pipelines.
+  ```
+  nextflow run nf-core/rnaseq --input example_rnaseq_config.csv -profile docker --aligner star_salmon \
+  -r 3.12.0 --outdir output_dir --igenomes_ignore --fasta refdata-gex-GRCh38-2020-A/fasta/genome.fa \
+  --gtf refdata-gex-GRCh38-2020-A/genes/genes.gtf --star_index refdata-gex-GRCh38-2020-A/star/ \
+  --trimmer fastp --gencode --remove_ribo_rna
+  ```
+- `02_gene_filtering.R` Additional gene-level filtering criteria (stringent).
+- `03_DESeq2.R` Downstream differential expression analysis (DEA) using DESeq2.
+- `04_edgeR.R` Downstream DEA using edgeR.
+- `05_enrichment.R` Enrichment analysis on significant differentially expressed genes (DEGs).
+- `06_visualization.RMD` Data visualization of RNA-seq analysis results: volcano plots, venn diagram, chow ruskey plot, heatmap, etc.
+- `07_cell_type_specific.R` Identification and exploration of cell-type specific signature genes.
 
 ## Tools 
 - R-4.3.2
