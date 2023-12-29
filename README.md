@@ -64,7 +64,7 @@ direction TB
     C6(Data Visualization)
     C7(Analysis Report)
 
-    C1 --> C2 --> C2.1 --> C3--> C4 --> C5 --> C5.1 --> C6 --> C7
+    C1 --> C2 --> C2.1 --> C3--> |DESeq2 & edgeR|C4 --> C5 --> C5.1 --> C6 --> C7
 end
 
 D["Multi-omics
