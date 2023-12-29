@@ -9,7 +9,7 @@
 # Note: These are stringent filtering criteria. An alternative gene filtering 
 #       criteria can be: remmove genes with less than 5 reads per sample
 
-# Load data --------------------------------------------
+# Load data --------------------------------------------------------------------
 dds < -DESeqDataSetFromMatrix(countData = gene_count_matrix, colData = design_matrix, design= ~ Group)
 # dds dim: 19824 genes  144 samples
 
@@ -30,5 +30,4 @@ dim(dds_matrix)
 keep3 = which( apply( t(rowsum(t(dds_matrix>0)+0, group=dds$Group_number)), MARGIN=1, FUN=function(x) { any(x<3) }) == FALSE) 
 dds = dds[keep3,] # dim: 15275 144 
 
-# End of the script ------------------------------------------------------------
 sessionInfo()
