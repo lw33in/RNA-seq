@@ -21,7 +21,7 @@
 
 ## RNA-seq Experimental and Analysis Workflow
 
-> Note: This is a standard workflow designed for bulk mRNA sequencing. Based on the specific biological questions, modifications might be called to this workflow.
+> Note: This is a standard workflow designed for bulk mRNA sequencing. Based on the specific biological questions, modifications of this workflow might be needed.
 
 ```mermaid
 flowchart LR
