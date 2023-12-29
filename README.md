@@ -78,8 +78,6 @@ A ==> B ==> C ==> D
     * Direct download: [Human reference (GRCh38) dataset required for Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/downloads/latest/)
 - **Differential Expression Analysis package**:
     * Significance Cutoff: abs|FC| >= 1.5, fdr < 0.05
-    * DESeq2: Prioritized method.
-    * edgeR: Secondary method (especially when biological replicates are lacking in experiments).
 
 ## RNA-seq Computational Analysis
 - `01_nextflow_RNAseq.sh` General command lines used to process raw reads using nf-core pipelines.
@@ -93,7 +91,7 @@ A ==> B ==> C ==> D
 - `03_DESeq2.R` Downstream differential expression analysis (DEA) using DESeq2.
 - `04_edgeR.R` Downstream DEA using edgeR.
 - `05_enrichment.R` Enrichment analysis on significant differentially expressed genes (DEGs).
-- `06_visualization.RMD` Data visualization of RNA-seq analysis results: volcano plots, venn diagram, chow ruskey plot, heatmap, etc.
+- `06_visualization.R` Data visualization of RNA-seq analysis results.
 - `07_cell_type_specific.R` Identification and exploration of cell-type specific signature genes.
 
 ## Tools 
