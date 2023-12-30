@@ -15,12 +15,12 @@ library(pheatmap)
 # Load data --------------------------------------------------------------------
 setwd("/rnaseq/data/")
 # Load FPKM
-gene_exp = read.table("gene_expression.tsv",sep="\t",header=T) 
+gene_exp <- read.table("gene_expression.tsv",sep="\t",header=T) 
 # Data cleaning
-rownames(gene_exp) = gene_exp$gene_symbol
-fpkm = gene_exp[grepl("fpkm_",colnames(gene_exp))]
+rownames(gene_exp) <- gene_exp$gene_symbol
+fpkm <- gene_exp[grepl("fpkm_",colnames(gene_exp))]
 dim(fpkm) #  19824   144
-colnames(fpkm) = gsub("fpkm_", "", colnames(fpkm)) # remove 'fpkm_'from sample names
+colnames(fpkm) <- gsub("fpkm_", "", colnames(fpkm)) # remove 'fpkm_'from sample names
 
 # Load design_matrix
 design_matrix <- read.table("design_matrix.tsv",sep="\t",header=T)
@@ -32,16 +32,16 @@ head(fpkm)
 
 # Convert HPA to rat gene names ------------------------------------------------
 setwd("/genelist/")
-lymph_hpa = read.table('HPA_LymphoidTissue_RNA_TissueEnriched_201genes.tsv',sep="\t",header=T) 
-rat_human_mapping = read.table('rat_human_mapping.id_ac.tsv',sep="\t",header=T,na.strings=c("","NA")) 
+lymph_hpa <- read.table('HPA_LymphoidTissue_RNA_TissueEnriched_201genes.tsv',sep="\t",header=T) 
+rat_human_mapping <- read.table('rat_human_mapping.id_ac.tsv',sep="\t",header=T,na.strings=c("","NA")) 
 # Match 
-lymph_rat = as.data.frame(rat_human_mapping$RAT_GENE_SYMBOL[ rat_human_mapping$HUMAN_GENE_SYMBOL %in% lymph_hpa$Gene])
-lymph_rat = as.data.frame(lymph_rat[!apply(lymph_rat == "", 1, all),])
+lymph_rat <- as.data.frame(rat_human_mapping$RAT_GENE_SYMBOL[ rat_human_mapping$HUMAN_GENE_SYMBOL %in% lymph_hpa$Gene])
+lymph_rat <- as.data.frame(lymph_rat[!apply(lymph_rat == "", 1, all),])
 dim(lymph_rat) 
 
 # Load tissue specific HPA converted rat genes 
 setwd("/genelist/RatGenes/")
-lymph_rat = read.table("LymphoidTissue_Rat.tsv" ,sep="\t",header=F) 
+lymph_rat <- read.table("LymphoidTissue_Rat.tsv" ,sep="\t",header=F) 
 
 # Cell-type specific gene identification ---------------------------------------
 # Look at lymph node data
@@ -49,11 +49,11 @@ fpkm_ILN <- fpkm[,grepl("D7_ILNC", colnames(fpkm))]
 colnames(fpkm_ILN)  
 # Identify significant rat genes in lymph nodes
 lymph_genes_inILN <- fpkm_ILN[match(lymph_rat$V1, rownames(fpkm_ILN)),]
-lymph_genes_inILN = na.omit(lymph_genes_inILN)
+lymph_genes_inILN <- na.omit(lymph_genes_inILN)
 # Check number of matched rat genes  in 24 G1-G4 ILN samples (before removing low read genes)
 dim(lymph_genes_inILN) 
 # Create matrix for heatmap.2
-lymph_genes_inILN = as.matrix(lymph_genes_inILN) 
+lymph_genes_inILN <- as.matrix(lymph_genes_inILN) 
 rownames(lymph_genes_inILN)
 
 # Heatmap ----------------------------------------------------------------------
