@@ -23,27 +23,27 @@ design_matrix <- design_matrix[grepl("ILN", design_matrix$tissue),] %>%
 dim(design_matrix) 
 
 # Load raw_gene_count 
-raw_gene_count = read.table("raw_gene_count.tsv",sep="\t",header=T)
-colnames(raw_gene_count) = gsub("read_count_","",colnames(raw_gene_count))
+raw_gene_count <- read.table("raw_gene_count.tsv",sep="\t",header=T)
+colnames(raw_gene_count) <- gsub("read_count_","",colnames(raw_gene_count))
 
 # Load gene_count_matrix
-gene_count_matrix = round(as.matrix(raw_gene_count[,4:ncol(raw_gene_count)]),0)
-row.names(gene_count_matrix) = (as.vector(raw_gene_count$gene_symbol))
+gene_count_matrix <- round(as.matrix(raw_gene_count[,4:ncol(raw_gene_count)]),0)
+row.names(gene_count_matrix) <- (as.vector(raw_gene_count$gene_symbol))
 colnames(gene_count_matrix)[which(colnames(gene_count_matrix) %in% design_matrix$Sample_name)]
-gene_count_matrix = gene_count_matrix[,match(design_matrix$Sample_name,colnames(gene_count_matrix))] 
+gene_count_matrix <- gene_count_matrix[,match(design_matrix$Sample_name,colnames(gene_count_matrix))] 
 
 # Remove outliers --------------------------------------------------------------
 # Remove sample 1 and 10 outliers, sample name: ZP_1_D7_ILNC , V_10_D7_ILNC (identified previously by PCA plots)
-design_matrix = design_matrix[!(design_matrix$Sample_name) %in% c("ZP_1_D7_ILNC","V_10_D7_ILNC"),]
+design_matrix <- design_matrix[!(design_matrix$Sample_name) %in% c("ZP_1_D7_ILNC","V_10_D7_ILNC"),]
 
 # Create dds object ------------------------------------------------------------
-dds=DESeqDataSetFromMatrix(countData = gene_count_matrix,
+dds <- DESeqDataSetFromMatrix(countData = gene_count_matrix,
                            colData = design_matrix,
                            design= ~ Group)
 
 # VarianceStabilizingTransformation (vst) --------------------------------------
-vsd = varianceStabilizingTransformation(dds)
-dists = dist(t(assay(vsd)))
+vsd <- varianceStabilizingTransformation(dds)
+dists <- dist(t(assay(vsd)))
 
 # PCA --------------------------------------------------------------------------
 setwd(plotdir)
@@ -60,20 +60,20 @@ plot(hclust(dists))
 dev.off()
 
 # heatmap - option 1 - unsupervised --------------------------------------------
-distsMatrix = as.matrix(dists)
+distsMatrix ,- as.matrix(dists)
 pdf("ILN_vst_heatmap.pdf",width=10,height=10,paper='special')
 autoplot(distsMatrix,  colour = 'Species')
 
 dev.off()
 
 # heatmap - option 2 - hierarchical clustering ---------------------------------
-distsMatrix = as.matrix(dists)
-rownames(distsMatrix) = colnames(vsd)
-colnames(distsMatrix) = NULL
-colors = colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
-groupnumber= data.frame(vsd$Group_number)
-rownames(groupnumber) = colnames(vsd)
-colnames(groupnumber) = "Group"
+distsMatrix <- as.matrix(dists)
+rownames(distsMatrix) <- colnames(vsd)
+colnames(distsMatrix) <- NULL
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+groupnumber <- data.frame(vsd$Group_number)
+rownames(groupnumber) <- colnames(vsd)
+colnames(groupnumber) <- "Group"
 
 pdf("ILN_vst_heatmap_hierarchical clustering_removingS1S10.pdf")
 pheatmap(distsMatrix,
