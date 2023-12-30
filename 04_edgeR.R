@@ -63,7 +63,7 @@ plotMDS(dgList, method="bcv",col=as.numeric(dgList$samples$group))
 
 # Model setup ------------------------------------------------------------------
 design.mat <- model.matrix(~ 0 + dgList$samples$group)
-colnames(design.mat) = levels(dgList$samples$group)
+colnames(design.mat) <- levels(dgList$samples$group)
 
 # Dispersion estimation --------------------------------------------------------
 # Step 1: fit the common dispersion --> estimate tagwise dispersions
