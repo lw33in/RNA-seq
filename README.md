@@ -23,6 +23,12 @@
 
 > Note: This is a standard workflow designed for bulk mRNA sequencing. Based on the specific biological questions, modifications of this workflow might be needed.
 
+- **Pre-processing**:
+    * In this workflow, [nf-core/rnaseq/3.12.0](https://nf-co.re/rnaseq/3.12.0) is used to process FASTQ files, performing quality control, trimming, alignment, and produce gene expression matrix. v3.12.0 is an older version of the pipeline. If you wish to use the latest release, please visit https://nf-co.re/rnaseq/
+- **Downstream analysis**:
+  * [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) and [edgeR](https://bioconductor.org/packages/release/bioc/html/edgeR.html) are two R tools used for differential gene expression analysis.
+
+
 ```mermaid
 flowchart LR
 
@@ -81,12 +87,21 @@ A ==> B ==> C ==> D
 
 ## RNA-seq Computational Analysis
 - `01_nextflow_RNAseq.sh` General command lines used to process raw reads using nf-core pipelines.
+   * example_rnaseq_config.csv:
+  ```
+  sample,fastq_1,fastq_2,strandedness
+  ctrl_rep1,ctrl_rep1_S1_L002_R1_001.fastq.gz,ctrl_rep1_S1_L002_R2_001.fastq.gz,auto
+  ctrl_rep2,ctrl_rep2_S1_L003_R1_001.fastq.gz,ctrl_rep2_S1_L003_R2_001.fastq.gz,auto
+  ctrl_rep3,ctrl_rep3_S1_L004_R1_001.fastq.gz,ctrl_rep3_S1_L004_R2_001.fastq.gz,auto
+  ```
   ```
   nextflow run nf-core/rnaseq --input example_rnaseq_config.csv -profile docker --aligner star_salmon \
   -r 3.12.0 --outdir output_dir --igenomes_ignore --fasta refdata-gex-GRCh38-2020-A/fasta/genome.fa \
   --gtf refdata-gex-GRCh38-2020-A/genes/genes.gtf --star_index refdata-gex-GRCh38-2020-A/star/ \
   --trimmer fastp --gencode --remove_ribo_rna
   ```
+  > Note If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with -profile test before running the workflow on actual data.
+  
 - `02_gene_filtering.R` Additional gene-level filtering criteria (stringent).
 - `03_DESeq2.R` Downstream differential expression analysis (DEA) using DESeq2.
 - `04_edgeR.R` Downstream DEA using edgeR.
