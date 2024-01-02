@@ -110,7 +110,7 @@ A ==> B ==> C ==> D
 - `07_cell_type_specific.R` Identification and exploration of cell-type specific signature genes.
 
 ## Tools 
-- R-4.3.2
+- R 3.12.0
 - nextflow 3.12.0
 - FastQC 0.11.9
 - MultiQC 1.14
